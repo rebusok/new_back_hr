@@ -13,7 +13,7 @@ export const routes = (app: Express) => {
     app.use((req: Request, res: Response) => {
         console.log("Nya-bad url: ", req.method, req.url);
         res.status(404).json({
-            error: "bad url /ᐠ｡ꞈ｡ᐟ\\",
+            error: "bad url dsada /ᐠ｡ꞈ｡ᐟ\\",
             method: req.method,
             url: req.url,
             query: req.query,
