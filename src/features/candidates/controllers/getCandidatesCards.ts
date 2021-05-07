@@ -36,18 +36,24 @@ export const getCandidatesCards = async (req: Request, res: Response, user: IUse
                 ...findPrivate
             };
             CandidatesPack.find(findO)
-                .sort({...sortO, updated: -1})
-                .lean()
                 .exec()
-                .then(candidatesPacks => {
+                .then(totalCountCandidatesPack => {
+                    CandidatesPack.find(findO)
+                        .sort({...sortO, updated: -1})
+                        .lean()
+                        .exec()
+                        .then(candidatesPacks => {
 
-                    resCookie(res, user).status(200)
-                        .json({
-                            candidatesPacks,
-                            token: user.token,
-                            tokenDeathTime: user.tokenDeathTime,
-                        });
-                }).catch(e => status500(res, e, user, "getCardPacks/CardsPack.find"))
+                            resCookie(res, user).status(200)
+                                .json({
+                                    candidatesPacks,
+                                    totalCountCandidatesPack,
+                                    token: user.token,
+                                    tokenDeathTime: user.tokenDeathTime,
+                                });
+                        }).catch(e => status500(res, e, user, "getCardPacks/CardsPack.find"))
+                }).catch(e => status500(res, e, user, "getCardPacks/TotalCandidates"))
+
         }).catch(e => status500(res, e, user, "getCardPacks/CardsPack.findOne/min"))
 
 }

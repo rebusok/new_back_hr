@@ -14,7 +14,7 @@ exports.routes = (app) => {
     app.use((req, res) => {
         console.log("Nya-bad url: ", req.method, req.url);
         res.status(404).json({
-            error: "bad url dsada /ᐠ｡ꞈ｡ᐟ\\",
+            error: "bad url /ᐠ｡ꞈ｡ᐟ\\",
             method: req.method,
             url: req.url,
             query: req.query,

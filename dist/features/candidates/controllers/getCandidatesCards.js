@@ -41,17 +41,22 @@ exports.getCandidatesCards = (req, res, user) => __awaiter(void 0, void 0, void 
         const findByUserId = user_id ? { user_id: user_idF } : {};
         const findO = Object.assign(Object.assign(Object.assign({}, findByUserId), findBase), findPrivate);
         candidatesPack_1.default.find(findO)
-            .sort(Object.assign(Object.assign({}, sortO), { updated: -1 }))
-            .lean()
             .exec()
-            .then(candidatesPacks => {
-            cookie_1.resCookie(res, user).status(200)
-                .json({
-                candidatesPacks,
-                token: user.token,
-                tokenDeathTime: user.tokenDeathTime,
-            });
-        }).catch(e => errorStatuses_1.status500(res, e, user, "getCardPacks/CardsPack.find"));
+            .then(totalCountCandidatesPack => {
+            candidatesPack_1.default.find(findO)
+                .sort(Object.assign(Object.assign({}, sortO), { updated: -1 }))
+                .lean()
+                .exec()
+                .then(candidatesPacks => {
+                cookie_1.resCookie(res, user).status(200)
+                    .json({
+                    candidatesPacks,
+                    totalCountCandidatesPack,
+                    token: user.token,
+                    tokenDeathTime: user.tokenDeathTime,
+                });
+            }).catch(e => errorStatuses_1.status500(res, e, user, "getCardPacks/CardsPack.find"));
+        }).catch(e => errorStatuses_1.status500(res, e, user, "getCardPacks/TotalCandidates"));
     }).catch(e => errorStatuses_1.status500(res, e, user, "getCardPacks/CardsPack.findOne/min"));
 });
 //# sourceMappingURL=getCandidatesCards.js.map
