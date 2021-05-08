@@ -1,7 +1,7 @@
 import mongoose, {Schema, Document} from "mongoose";
 
 export type StatusType = 'подошел' | 'отказ' | 'думает';
-export type TotalType = 'Выход на работу' | 'Стажировка' | 'Отказ' | 'Отказ-руководителя'
+export type TotalType = 'Выход на работу' | 'Стажировка' | 'Отказ' | 'Отк-Рук'
 
 export interface ICandidatePack extends Document {
     _id: mongoose.Types.ObjectId;
@@ -16,7 +16,7 @@ export interface ICandidatePack extends Document {
     SS: Date | null,
     total: TotalType,
     more_id: mongoose.Types.ObjectId;
-
+    meeting:boolean
     created: Date;
     updated: Date;
     type: string;
@@ -45,6 +45,14 @@ const CandidatesPack: Schema = new Schema(
         status: {
             type: String,
             required:true
+        },
+        position: {
+            type: String,
+            required:true
+        },
+        meeting: {
+            type: Boolean,
+            required: true
         },
         more_id: {
             type: Schema.Types.ObjectId,

@@ -34,7 +34,7 @@ exports.getCandidatesCards = (req, res, user) => __awaiter(void 0, void 0, void 
         const sortO = sortName ? { [sortName]: direction } : {};
         const findBase = {
             name: new RegExp(packNameF, "gi"),
-            status: new RegExp(searchStatusF, "gi"),
+            status: new RegExp(`^${searchStatusF}`, "gi"),
             total: new RegExp(searchTotalF, "gi"),
         };
         const findPrivate = user_idF && user._id.equals(user_idF) ? {} : { private: false };
@@ -43,6 +43,7 @@ exports.getCandidatesCards = (req, res, user) => __awaiter(void 0, void 0, void 
         candidatesPack_1.default.find(findO)
             .exec()
             .then(totalCountCandidatesPack => {
+            const totalPacks = totalCountCandidatesPack.length;
             candidatesPack_1.default.find(findO)
                 .sort(Object.assign(Object.assign({}, sortO), { updated: -1 }))
                 .lean()
@@ -51,7 +52,7 @@ exports.getCandidatesCards = (req, res, user) => __awaiter(void 0, void 0, void 
                 cookie_1.resCookie(res, user).status(200)
                     .json({
                     candidatesPacks,
-                    totalCountCandidatesPack,
+                    totalPacks,
                     token: user.token,
                     tokenDeathTime: user.tokenDeathTime,
                 });

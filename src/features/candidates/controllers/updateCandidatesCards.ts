@@ -23,6 +23,7 @@ export const updateCandidatesCards = async (req:Request, res:Response, user: IUs
         const dateF = candidatePack.date || undefined;
         const SSF = candidatePack.SS || undefined;
         const totalF = candidatePack.total || undefined;
+        const meetingF = candidatePack.meeting || undefined;
 
         CandidatesPack.findById(candidatePack._id)
             .exec()
@@ -46,6 +47,7 @@ export const updateCandidatesCards = async (req:Request, res:Response, user: IUs
                             total: totalF || oldCandidatePack.total,
                             path: pathF || oldCandidatePack.path,
                             type: typeF || oldCandidatePack.type,
+                            meeting: meetingF || oldCandidatePack.meeting,
                         },
                         {new: true}
                     )

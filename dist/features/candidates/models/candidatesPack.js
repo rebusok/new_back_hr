@@ -42,6 +42,14 @@ const CandidatesPack = new mongoose_1.Schema({
         type: String,
         required: true
     },
+    position: {
+        type: String,
+        required: true
+    },
+    meeting: {
+        type: Boolean,
+        required: true
+    },
     more_id: {
         type: mongoose_1.Schema.Types.ObjectId,
     },
