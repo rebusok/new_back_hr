@@ -17,11 +17,12 @@ const candidatesPack_1 = __importDefault(require("../models/candidatesPack"));
 const cookie_1 = require("../../../main/cookie");
 const errorStatuses_1 = require("../../auth/helpers/errorStatuses");
 exports.getCandidatesCards = (req, res, user) => __awaiter(void 0, void 0, void 0, function* () {
-    const { sortPacks, packName, user_id, type, searchStatus, searchTotal } = req.query;
+    const { sortPacks, packName, user_id, type, searchStatus, searchTotal, searchPosition } = req.query;
     const sortPacksF = sortPacks || ""; // '0grade'
     const packNameF = packName || "";
     const searchStatusF = searchStatus || "";
     const searchTotalF = searchTotal || "";
+    const searchPositionF = searchPosition || "";
     const user_idF = user_id || undefined;
     // const typeF = type as string | undefined || "pack";
     const user_idO = user_idF ? { user_id: user_idF } : undefined; // options
@@ -32,10 +33,12 @@ exports.getCandidatesCards = (req, res, user) => __awaiter(void 0, void 0, void 
         const sortName = (sortPacksF && sortPacksF.length > 2) ? sortPacksF.slice(1) : "";
         const direction = sortName ? (sortPacksF[0] === "0" ? -1 : 1) : undefined;
         const sortO = sortName ? { [sortName]: direction } : {};
+        console.log(searchPositionF);
         const findBase = {
             name: new RegExp(packNameF, "gi"),
             status: new RegExp(`^${searchStatusF}`, "gi"),
             total: new RegExp(searchTotalF, "gi"),
+            position: new RegExp(searchPositionF, "gi"),
         };
         const findPrivate = user_idF && user._id.equals(user_idF) ? {} : { private: false };
         const findByUserId = user_id ? { user_id: user_idF } : {};
