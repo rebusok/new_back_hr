@@ -11,6 +11,12 @@ export const getCandidatesCards = async (req: Request, res: Response, user: IUse
     const searchStatusF: string = searchStatus as string | undefined || "";
     const searchTotalF: string = searchTotal as string | undefined || "";
     const searchPositionF: string = searchPosition as string | undefined || "";
+    console.log(user_id)
+    console.log(packName)
+    console.log(sortPacks)
+    console.log(searchStatus)
+    console.log(searchTotal)
+    console.log(searchPosition)
 
     const user_idF = user_id as string | undefined || undefined;
     // const typeF = type as string | undefined || "pack";
@@ -28,7 +34,7 @@ export const getCandidatesCards = async (req: Request, res: Response, user: IUse
             const findBase = {
                 name: new RegExp(packNameF, "gi"),
                 status: new RegExp(`^${searchStatusF}`, "gi"),
-                total: new RegExp(searchTotalF, "gi"),
+                // total: new RegExp(searchTotalF, "gi"),
                 position: new RegExp(searchPositionF, "gi"),
             };
             const findPrivate = user_idF && user._id.equals(user_idF) ? {} : {private: false};

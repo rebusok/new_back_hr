@@ -43,16 +43,14 @@ const CandidatesPack: Schema = new Schema(
             required: true
         },
         status: {
-            type: String,
-            required:true
+            type: String
         },
         position: {
             type: String,
             required:true
         },
         meeting: {
-            type: Boolean,
-            required: true
+            type: Boolean
         },
         more_id: {
             type: Schema.Types.ObjectId,
@@ -61,8 +59,7 @@ const CandidatesPack: Schema = new Schema(
             type: String
         },
         leaderInterview: {
-            type: Boolean,
-            required: true
+            type: Boolean
         },
         date: {
             type: Date,
@@ -72,13 +69,20 @@ const CandidatesPack: Schema = new Schema(
             type: Date ||  null
         },
         total: {
-            type: String,
-            required: true
+            type: String
         },
         type: {
             type: String,
             required: true
         },
+        time: {
+            type: String,
+            required: true
+        },
+        phone: {
+            type: String,
+            required: true
+        }
     },
     {
         timestamps: {

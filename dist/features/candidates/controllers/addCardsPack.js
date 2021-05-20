@@ -19,27 +19,29 @@ const candidatesPack_1 = __importDefault(require("../models/candidatesPack"));
 const cookie_1 = require("../../../main/cookie");
 exports.addCandidatePack = (req, res, user) => __awaiter(void 0, void 0, void 0, function* () {
     const { candidatesPack } = req.body;
+    console.log(candidatesPack);
     if (!candidatesPack)
         errorStatuses_1.status400(res, "No cardsPack in body! /ᐠ-ꞈ-ᐟ\\", user, "addCardsPack", { body: req.body });
     else {
         const pathF = candidatesPack.path || "/def";
         const typeF = candidatesPack.type || "pack";
         const recommendationF = candidatesPack.recommendation || '';
-        const ssF = candidatesPack.SS || null;
         candidatesPack_1.default.create({
             user_id: user._id,
             user_name: user.name,
             name: candidatesPack.name,
             path: pathF,
-            status: candidatesPack.status,
+            status: '',
             more_id: user._id,
             recommendation: recommendationF,
-            leaderInterview: candidatesPack.leaderInterview,
+            leaderInterview: null,
             position: candidatesPack.position,
-            date: new Date(),
-            meeting: candidatesPack.meeting,
-            SS: ssF,
-            total: candidatesPack.total,
+            date: new Date(Date.parse(candidatesPack.date)).toISOString(),
+            time: candidatesPack.time,
+            phone: candidatesPack.phone,
+            meeting: null,
+            SS: null,
+            total: '',
             type: typeF,
             created: new Date(),
             updated: new Date(),
