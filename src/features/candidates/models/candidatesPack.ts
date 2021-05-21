@@ -8,6 +8,8 @@ export interface ICandidatePack extends Document {
     user_id: mongoose.Types.ObjectId;
     position: string;
     name: string;
+    phone: string;
+    time: string;
     path: string;
     status: StatusType; // back count
     recommendation: string,
