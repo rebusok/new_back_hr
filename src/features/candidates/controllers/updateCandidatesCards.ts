@@ -19,14 +19,14 @@ export const updateCandidatesCards = async (req:Request, res:Response, user: IUs
         const positionF = candidatePack.position || undefined;
         const statusF = candidatePack.status || undefined;
         const recommendationF = candidatePack.recommendation || undefined;
-        const leaderInterviewF = candidatePack.leaderInterview || undefined;
         const dateF = candidatePack.date || undefined;
         const SSF = candidatePack.SS || undefined;
         const totalF = candidatePack.total || undefined;
         const meetingF = candidatePack.meeting || undefined;
         const phoneF = candidatePack.phone || undefined;
         const timeF = candidatePack.time || undefined;
-
+        console.log(meetingF)
+        console.log(candidatePack.meeting)
         CandidatesPack.findById(candidatePack._id)
             .exec()
             .then((oldCandidatePack: ICandidatePack | null) => {
@@ -43,13 +43,13 @@ export const updateCandidatesCards = async (req:Request, res:Response, user: IUs
                             position: positionF || oldCandidatePack.position,
                             status: statusF || oldCandidatePack.status,
                             recommendation: recommendationF || oldCandidatePack.recommendation,
-                            leaderInterview: leaderInterviewF || oldCandidatePack.leaderInterview,
+                            leaderInterview: candidatePack.leaderInterview === false? candidatePack.leaderInterview : candidatePack.leaderInterview === true ? candidatePack.leaderInterview : oldCandidatePack.leaderInterview,
                             date: dateF || oldCandidatePack.date,
                             SS: SSF || oldCandidatePack.SS,
                             total: totalF || oldCandidatePack.total,
                             path: pathF || oldCandidatePack.path,
                             type: typeF || oldCandidatePack.type,
-                            meeting: meetingF || oldCandidatePack.meeting,
+                            meeting: candidatePack.meeting === false? candidatePack.meeting : candidatePack.meeting === true ? candidatePack.meeting : oldCandidatePack.meeting,
                             phone: phoneF || oldCandidatePack.phone,
                             time: timeF || oldCandidatePack.time,
                         },
