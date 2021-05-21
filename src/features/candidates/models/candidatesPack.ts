@@ -1,13 +1,15 @@
 import mongoose, {Schema, Document} from "mongoose";
 
 export type StatusType = 'подошел' | 'отказ' | 'думает';
-export type TotalType = 'Выход на работу' | 'Стажировка' | 'Отказ' | 'Отказ-руководителя'
+export type TotalType = 'Выход на работу' | 'Стажировка' | 'Отказ' | 'Отк-Рук'
 
 export interface ICandidatePack extends Document {
     _id: mongoose.Types.ObjectId;
     user_id: mongoose.Types.ObjectId;
     position: string;
     name: string;
+    phone: string;
+    time: string;
     path: string;
     status: StatusType; // back count
     recommendation: string,
@@ -16,7 +18,7 @@ export interface ICandidatePack extends Document {
     SS: Date | null,
     total: TotalType,
     more_id: mongoose.Types.ObjectId;
-
+    meeting:boolean
     created: Date;
     updated: Date;
     type: string;
@@ -43,8 +45,14 @@ const CandidatesPack: Schema = new Schema(
             required: true
         },
         status: {
+            type: String
+        },
+        position: {
             type: String,
             required:true
+        },
+        meeting: {
+            type: Boolean
         },
         more_id: {
             type: Schema.Types.ObjectId,
@@ -53,8 +61,7 @@ const CandidatesPack: Schema = new Schema(
             type: String
         },
         leaderInterview: {
-            type: Boolean,
-            required: true
+            type: Boolean
         },
         date: {
             type: Date,
@@ -64,13 +71,20 @@ const CandidatesPack: Schema = new Schema(
             type: Date ||  null
         },
         total: {
-            type: String,
-            required: true
+            type: String
         },
         type: {
             type: String,
             required: true
         },
+        time: {
+            type: String,
+            required: true
+        },
+        phone: {
+            type: String,
+            required: true
+        }
     },
     {
         timestamps: {

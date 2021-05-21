@@ -6,26 +6,31 @@ import {resCookie} from "../../../main/cookie";
 
 export const addCandidatePack = async (req: Request, res: Response, user:IUser) => {
     const {candidatesPack} = req.body;
+    console.log(candidatesPack)
     if(!candidatesPack)
         status400(res, "No cardsPack in body! /ᐠ-ꞈ-ᐟ\\", user, "addCardsPack", {body: req.body});
 
     else {
         const pathF = candidatesPack.path || "/def";
         const typeF = candidatesPack.type || "pack";
-        const recommendationF = candidatesPack.recommendation || ''
-        const ssF = candidatesPack.SS || null
+        const recommendationF = candidatesPack.recommendation || '';
+
         CandidatesPack.create({
             user_id: user._id,
             user_name: user.name,
             name: candidatesPack.name,
             path: pathF,
-            status: candidatesPack.status,
+            status: '',
             more_id: user._id,
             recommendation: recommendationF,
-            leaderInterview: candidatesPack.leaderInterview,
-            date: new Date(),
-            SS: ssF,
-            total: candidatesPack.total,
+            leaderInterview: null,
+            position: candidatesPack.position,
+            date: new Date(Date.parse(candidatesPack.date)).toISOString(),
+            time: candidatesPack.time,
+            phone: candidatesPack.phone,
+            meeting: null,
+            SS: null,
+            total: '',
             type: typeF,
             created: new Date(),
             updated: new Date(),

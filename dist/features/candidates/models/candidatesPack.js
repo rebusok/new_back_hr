@@ -39,8 +39,14 @@ const CandidatesPack = new mongoose_1.Schema({
         required: true
     },
     status: {
+        type: String
+    },
+    position: {
         type: String,
         required: true
+    },
+    meeting: {
+        type: Boolean
     },
     more_id: {
         type: mongoose_1.Schema.Types.ObjectId,
@@ -49,8 +55,7 @@ const CandidatesPack = new mongoose_1.Schema({
         type: String
     },
     leaderInterview: {
-        type: Boolean,
-        required: true
+        type: Boolean
     },
     date: {
         type: Date,
@@ -60,13 +65,20 @@ const CandidatesPack = new mongoose_1.Schema({
         type: Date || null
     },
     total: {
-        type: String,
-        required: true
+        type: String
     },
     type: {
         type: String,
         required: true
     },
+    time: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    }
 }, {
     timestamps: {
         createdAt: "created",

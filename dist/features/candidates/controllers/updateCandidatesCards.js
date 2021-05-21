@@ -33,6 +33,9 @@ exports.updateCandidatesCards = (req, res, user) => __awaiter(void 0, void 0, vo
         const dateF = candidatePack.date || undefined;
         const SSF = candidatePack.SS || undefined;
         const totalF = candidatePack.total || undefined;
+        const meetingF = candidatePack.meeting || undefined;
+        const phoneF = candidatePack.phone || undefined;
+        const timeF = candidatePack.time || undefined;
         candidatesPack_1.default.findById(candidatePack._id)
             .exec()
             .then((oldCandidatePack) => {
@@ -52,6 +55,9 @@ exports.updateCandidatesCards = (req, res, user) => __awaiter(void 0, void 0, vo
                     total: totalF || oldCandidatePack.total,
                     path: pathF || oldCandidatePack.path,
                     type: typeF || oldCandidatePack.type,
+                    meeting: meetingF || oldCandidatePack.meeting,
+                    phone: phoneF || oldCandidatePack.phone,
+                    time: timeF || oldCandidatePack.time,
                 }, { new: true })
                     .exec()
                     .then((updatedCandidatePack) => {
