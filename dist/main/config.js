@@ -7,7 +7,7 @@ const MONGO_DB_URL = process.env.MONGO_DB_URL || "cluster0.ubqny.mongodb.net/crm
 exports.MongoDBUris = `mongodb+srv://${USER_NAME}:${PASSWORD}@${MONGO_DB_URL}?retryWrites=true&w=majority`;
 exports.DEV_VERSION = false;
 exports.VERSION_2_0 = "/2.0";
-exports.GMAIL_USER = "";
-exports.GMAIL_PASS = "";
+exports.GMAIL_USER = "hr.crmad@gmail.com";
+exports.GMAIL_PASS = "5oQB5vpN";
 exports.PORT = 7542;
 //# sourceMappingURL=config.js.map
